@@ -1,5 +1,5 @@
 {
-  "name": "com.mgcdev.InkDialogueGraphTool",
+  "name": "com.mgcdev.inkdialoguegraphtool",
   "version": "1.0.0",
   "displayName": "Ink Dialogue Graph Tool",
   "description": "Unity Package that writes and produces Ink Dialogue Files using a Node Graph from Unity GraphToolkit framework.",
