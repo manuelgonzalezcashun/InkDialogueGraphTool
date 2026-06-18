@@ -1,25 +1,29 @@
 using UnityEngine;
 using Unity.GraphToolkit.Editor;
 using System;
-[Serializable]
-public abstract class InkNode : Node
+namespace InkDialogueGraphTool
 {
-    public abstract void ProcessNode(DialogueWriter writer);
-    public T GetPortValue<T>(IPort port)
+    [Serializable]
+    public abstract class InkNode : Node
     {
-        if (port == null) return default;
-
-        if (port.IsConnected)
+        public abstract void ProcessNode(DialogueWriter writer);
+        public T GetPortValue<T>(IPort port)
         {
-            if (port.FirstConnectedPort.GetNode() is IVariableNode variableNode)
+            if (port == null) return default;
+
+            if (port.IsConnected)
             {
-                variableNode.Variable.TryGetDefaultValue(out T value);
-                return value;
+                if (port.FirstConnectedPort.GetNode() is IVariableNode variableNode)
+                {
+                    variableNode.Variable.TryGetDefaultValue(out T value);
+                    return value;
+                }
             }
+
+            port.TryGetValue(out T fallbackValue);
+            return fallbackValue;
         }
 
-        port.TryGetValue(out T fallbackValue);
-        return fallbackValue;
     }
-
 }
+

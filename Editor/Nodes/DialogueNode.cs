@@ -1,30 +1,34 @@
 using UnityEngine;
 using System;
 using Unity.GraphToolkit.Editor;
-[Serializable]
-public class DialogueNode : InkNode
+
+namespace InkDialogueGraphTool
 {
-    protected override void OnDefinePorts(IPortDefinitionContext context)
+    [Serializable]
+    public class DialogueNode : InkNode
     {
-        context.AddOutputPort(PortID.Out).Build();
-        context.AddInputPort(PortID.In).Build();
+        protected override void OnDefinePorts(IPortDefinitionContext context)
+        {
+            context.AddOutputPort(PortID.Out).Build();
+            context.AddInputPort(PortID.In).Build();
 
-        context.AddInputPort<string>(PortID.Speaker).Build();
-        context.AddInputPort<string>(PortID.Dialogue).Build();
-    }
-    public override void ProcessNode(DialogueWriter writer)
-    {
-        string dialogueLine = GetPortValue<string>(GetInputPortByName(PortID.Dialogue));
+            context.AddInputPort<string>(PortID.Speaker).Build();
+            context.AddInputPort<string>(PortID.Dialogue).Build();
+        }
+        public override void ProcessNode(DialogueWriter writer)
+        {
+            string dialogueLine = GetPortValue<string>(GetInputPortByName(PortID.Dialogue));
 
-        string speakerID = GetInputPortByName(PortID.Speaker).Name;
-        string speakerName = GetPortValue<string>(GetInputPortByName(PortID.Speaker));
-        var speakerTag = new InkDialogueTag(speakerID, speakerName);
+            string speakerID = GetInputPortByName(PortID.Speaker).Name;
+            string speakerName = GetPortValue<string>(GetInputPortByName(PortID.Speaker));
+            var speakerTag = new InkDialogueTag(speakerID, speakerName);
 
 
-        writer.ImportDialogueNodeToInkFile(dialogueLine + speakerTag.ToString());
+            writer.ImportDialogueNodeToInkFile(dialogueLine + speakerTag.ToString());
 
-        var outputNode = GetOutputPortByName(PortID.Out).FirstConnectedPort.GetNode();
-        if (outputNode is DivertNode divertNode)
-            divertNode.ProcessNode(writer);
+            var outputNode = GetOutputPortByName(PortID.Out).FirstConnectedPort.GetNode();
+            if (outputNode is DivertNode divertNode)
+                divertNode.ProcessNode(writer);
+        }
     }
 }

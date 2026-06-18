@@ -1,18 +1,22 @@
 using UnityEngine;
 using UnityEditor.AssetImporters;
 using Unity.GraphToolkit.Editor;
-[ScriptedImporter(1, DialogueGraph.AssetExtension)]
-public class DialogueGraphImporter : ScriptedImporter
+namespace InkDialogueGraphTool
 {
-    public override void OnImportAsset(AssetImportContext ctx)
+    [ScriptedImporter(1, DialogueGraph.AssetExtension)]
+    public class DialogueGraphImporter : ScriptedImporter
     {
-        DialogueGraph editorGraph = GraphDatabase.LoadGraphForImporter<DialogueGraph>(ctx.assetPath);
-        DialogueWriter writer = new DialogueWriter(editorGraph.Name);
-
-        foreach (var iNode in editorGraph.GetNodes())
+        public override void OnImportAsset(AssetImportContext ctx)
         {
-            if (iNode is InkRootNode rootNode) rootNode.ProcessNode(writer);
+            DialogueGraph editorGraph = GraphDatabase.LoadGraphForImporter<DialogueGraph>(ctx.assetPath);
+            DialogueWriter writer = new DialogueWriter(editorGraph.Name);
+
+            foreach (var iNode in editorGraph.GetNodes())
+            {
+                if (iNode is InkRootNode rootNode) rootNode.ProcessNode(writer);
+            }
+            writer.WriteStory();
         }
-        writer.WriteStory();
     }
 }
+

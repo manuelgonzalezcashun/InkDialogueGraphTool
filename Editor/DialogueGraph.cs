@@ -2,16 +2,19 @@ using UnityEngine;
 using Unity.GraphToolkit.Editor;
 using UnityEditor;
 using System;
-
-[Serializable]
-[Graph(AssetExtension)]
-public class DialogueGraph : Graph
+namespace InkDialogueGraphTool
 {
-    public const string AssetExtension = "inkdg";
-
-    [MenuItem("Assets/Create/Dialogue Graph", false)]
-    private static void CreateAssetFile()
+    [Serializable]
+    [Graph(AssetExtension)]
+    public class DialogueGraph : Graph
     {
-        GraphDatabase.PromptInProjectBrowserToCreateNewAsset<DialogueGraph>();
+        public const string AssetExtension = "inkdg";
+
+        [MenuItem("Assets/Create/Dialogue Graph", false)]
+        private static void CreateAssetFile()
+        {
+            GraphDatabase.PromptInProjectBrowserToCreateNewAsset<DialogueGraph>();
+        }
     }
 }
+
