@@ -4,9 +4,7 @@
   "displayName": "Ink Dialogue Graph Tool",
   "description": "Unity Package that writes and produces Ink Dialogue Files using a Node Graph from Unity GraphToolkit framework.",
   "unity": "6.2",
-  "dependencies": {
-    "com.inkle.ink-unity-integration": "1.1.8"
-  },
+  "dependencies": {},
   "author": {
     "name": "Manuel Gonzalez Cashun",
     "url": "https://mgcdev.weebly.com"
