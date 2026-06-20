@@ -5,7 +5,7 @@
   "description": "Unity Package that writes and produces Ink Dialogue Files using a Node Graph from Unity GraphToolkit framework.",
   "unity": "6.2",
   "dependencies": {
-    "com.inkle.ink-unity-integration": "https://github.com/inkle/ink-unity-integration.git#upm"
+    "com.inkle.ink-unity-integration": "https://github.com/inkle/ink-unity-integration.git"
   },
   "author": {
     "name": "Manuel Gonzalez Cashun",
