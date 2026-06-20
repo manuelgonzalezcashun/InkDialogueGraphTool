@@ -14,7 +14,7 @@
     }
   ],
   "dependencies": {
-    "com.inkle.ink-unity-integration": "https://github.com/inkle/ink-unity-integration.git#upm"
+    "com.inkle.ink-unity-integration": "1.2.1"
   },
   "author": {
     "name": "Manuel Gonzalez Cashun",
