@@ -22,7 +22,7 @@ namespace InkDialogueGraphTool
 
             foreach (var node in nodes)
             {
-                if (node is DivertNode) return;
+                if (node is DivertNode && !(rootNode is StartNode)) return;
 
                 connectedNodes.Add(node);
                 TraverseThroughNodeTree(node);

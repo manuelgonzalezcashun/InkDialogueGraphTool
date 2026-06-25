@@ -15,7 +15,9 @@ namespace InkDialogueGraphTool
         }
         public override void ProcessNode(DialogueWriter writer)
         {
-            string knotName = GetPortValue<string>(GetInputPortByName(PortID.KnotName));
+            string portValue = GetPortValue<string>(GetInputPortByName(PortID.KnotName));
+            string knotName = portValue.Trim().Replace(" ", "");
+
             writer.ImportKnotNodeToInkFile(knotName);
 
             TraverseThroughNodeTree(this);

@@ -6,7 +6,6 @@ namespace InkDialogueGraphTool
     [Serializable]
     public class DivertNode : InkNode
     {
-        const string doneDivertName = "DONE";
         protected override void OnDefinePorts(IPortDefinitionContext context)
         {
             context.AddInputPort(PortID.In).Build();
@@ -15,9 +14,11 @@ namespace InkDialogueGraphTool
 
         public override void ProcessNode(DialogueWriter writer)
         {
-            var value = GetPortValue<string>(GetInputPortByName(PortID.DivertName));
+            string value = GetPortValue<string>(GetInputPortByName(PortID.DivertName)).Trim().Replace(" ", "");
 
-            string divertText = string.IsNullOrEmpty(value) || value.ToUpper() == doneDivertName ? $"-> {doneDivertName}" : $"-> {value}";
+            if (string.IsNullOrEmpty(value)) return;
+            string divertText = $"-> {value}";
+
             writer.ImportDialogueNodeToInkFile(divertText);
         }
     }
