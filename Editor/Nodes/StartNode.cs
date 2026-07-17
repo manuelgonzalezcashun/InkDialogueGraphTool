@@ -7,7 +7,7 @@ using UnityEngine;
 namespace InkDialogueGraphTool
 {
     [Serializable]
-    public class StartNode : InkRootNode
+    public class StartNode : InkNode
     {
         public override void ProcessNode(DialogueWriter writer)
         {

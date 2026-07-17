@@ -6,7 +6,7 @@ using Unity.GraphToolkit.Editor;
 namespace InkDialogueGraphTool
 {
     [Serializable]
-    public class KnotNode : InkRootNode
+    public class KnotNode : InkNode
     {
         protected override void OnDefinePorts(IPortDefinitionContext context)
         {

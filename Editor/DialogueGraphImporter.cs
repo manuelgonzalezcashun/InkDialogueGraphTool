@@ -19,7 +19,7 @@ namespace InkDialogueGraphTool
             {
                 if (iNode is StartNode) continue;
 
-                if (iNode is InkRootNode rootNode) rootNode.ProcessNode(writer);
+                if (iNode is KnotNode knotNode) knotNode.ProcessNode(writer);
             }
             writer.WriteStory();
         }

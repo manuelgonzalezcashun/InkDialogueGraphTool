@@ -44,14 +44,23 @@ namespace InkDialogueGraphTool
             {
                 string index = outputPort.Name.Substring("Choice ".Length);
                 var textPort = GetInputPortByName($"Choice Text {index}");
-
                 var choiceText = GetPortValue<string>(textPort);
 
                 writer.ImportChoiceNodeToInkFile(choiceText, isSticky);
 
                 var outputNode = outputPort.FirstConnectedPort.GetNode();
-                if (outputNode is DivertNode divertNode)
-                    divertNode.ProcessNode(writer);
+                if (outputNode == null) continue;
+
+                InkNode connectedNode = outputNode as InkNode;
+
+                connectedNodes.Clear();
+                connectedNodes.Add(connectedNode);
+                TraverseThroughNodeTree(connectedNode);
+
+                foreach (var node in connectedNodes)
+                {
+                    node.ProcessNode(writer);
+                }
             }
         }
     }

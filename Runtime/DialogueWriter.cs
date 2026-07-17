@@ -17,7 +17,6 @@ namespace InkDialogueGraphTool
 
         string file;
         string inkFile;
-
         public DialogueWriter(string inkFileName)
         {
             inkFile = inkFileName + INK_EXTENSION;
@@ -43,7 +42,8 @@ namespace InkDialogueGraphTool
 
             string tempFile = file + ".tmp";
             var lines = dialogueLines.Select(line => line.ToString());
-            File.WriteAllLines(tempFile, lines);
+
+            File.AppendAllLines(tempFile, lines);
             File.AppendAllText(tempFile, END_DIVERT);
 
             if (File.Exists(file))

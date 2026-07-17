@@ -10,6 +10,7 @@ namespace InkDialogueGraphTool
         public const string KnotName = "Knot Name";
         public const string DivertName = "Divert Name";
         public const string Tags = "Tags";
+        public const string Variable = "Variable";
 
         public string ChoiceTextIndex(int i)
         {
